@@ -22,11 +22,30 @@ function findLeftHandedSeats(table) {
   console.log(table);
 
   // left-handed person cannot sit to left of right-handed person
+  // "L" - "R" NO!
 
-  // reverse first inner arr
+  // reverse first inner arr?
+  const reversed = table[0].reverse();
+  console.log(reversed);
+  console.log(table[1]);
+
+  // count how many seats a lefthanded person can sit at, find the "U"s
+  let counter = 0;
+
+  for (let i = 0; i < 4; i++) {
+    if (reversed[i] === 'U' || table[1][i] === 'U') {
+      if (reversed[i - 1] !== 'R' || table[1][i] !== 'R' || null) {
+        counter++;
+      }
+    }
+  }
+
+  console.log(counter);
+  return counter;
 
   // flaten map?
-  // edge cases
+  // handling edge cases?
+  // just find "U"s and check if the rightside is an "R"
 
-  return table;
+  // return table;
 }
