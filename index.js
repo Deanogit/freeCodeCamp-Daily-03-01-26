@@ -18,34 +18,60 @@
 // ]
 // The top-left seat is cannot be sat in because there's a right-handed person to the left. The other two open seats can be sat in because there isn't a right-handed person to the left.
 
+// function findLeftHandedSeats(table) {
+//   console.log(table);
+
+//   // left-handed person cannot sit to left of right-handed person
+//   // "L" - "R" NO!
+
+//   // reverse first inner arr?
+//   const reversed = table[0].reverse();
+//   console.log(reversed);
+//   console.log(table[1]);
+
+//   // count how many seats a lefthanded person can sit at, find the "U"s
+//   let counter = 0;
+
+//   for (let i = 0; i < 4; i++) {
+//     if (reversed[i] === 'U' || table[1][i] === 'U') {
+//       if (reversed[i - 1] !== 'R' || table[1][i] !== 'R' || null) {
+//         counter++;
+//       }
+//     }
+//   }
+
+//   console.log(counter);
+//   return counter;
+
+//   // flaten map?
+//   // handling edge cases?
+//   // just find "U"s and check if the rightside is an "R"
+
+//   // return table;
+// }
+
 function findLeftHandedSeats(table) {
-  console.log(table);
-
-  // left-handed person cannot sit to left of right-handed person
-  // "L" - "R" NO!
-
-  // reverse first inner arr?
-  const reversed = table[0].reverse();
-  console.log(reversed);
-  console.log(table[1]);
-
-  // count how many seats a lefthanded person can sit at, find the "U"s
   let counter = 0;
+  const topRow = table[0];
+  const bottomRow = table[1];
 
   for (let i = 0; i < 4; i++) {
-    if (reversed[i] === 'U' || table[1][i] === 'U') {
-      if (reversed[i - 1] !== 'R' || table[1][i] !== 'R' || null) {
+    // Top Row Check
+    if (topRow[i] === 'U') {
+      // For Top Row, Left is i + 1
+      if (topRow[i + 1] !== 'R') {
+        counter++;
+      }
+    }
+
+    // Bottom Row Check
+    if (bottomRow[i] === 'U') {
+      // For Bottom Row, Left is i - 1
+      if (bottomRow[i - 1] !== 'R') {
         counter++;
       }
     }
   }
 
-  console.log(counter);
   return counter;
-
-  // flaten map?
-  // handling edge cases?
-  // just find "U"s and check if the rightside is an "R"
-
-  // return table;
 }
